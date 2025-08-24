@@ -1,23 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ProjectCard from './components/ProjectCard';
 
 function App() {
+  const [modalContent, setModalContent] = useState(null);
+
+  const projects = [
+    { title: 'Project 1', description: 'Description 1', link: '#' },
+    { title: 'Project 2', description: 'Description 2', link: '#' },
+    { title: 'Project 3', description: 'Description 3', link: '#' },
+  ];
+
+  const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js'];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Navbar />
+
+      <section id="home" className="section">
+        <h1>Welcome to My Portfolio</h1>
+        <p>This is my SPA portfolio with smooth scroll.</p>
+      </section>
+
+      <section id="about" className="section">
+        <h1>About Me</h1>
+        <p>I am a passionate developer with skills in React and web development.</p>
+      </section>
+
+      <section id="projects" className="section">
+        <h1>My Projects</h1>
+        <div className="project-grid">
+          {projects.map((p, i) => (
+            <ProjectCard key={i} {...p} openModal={() => setModalContent(p)} />
+          ))}
+        </div>
+      </section>
+
+      <section id="skills" className="section">
+        <h1>My Skills</h1>
+        <ul>
+          {skills.map((s, i) => <li key={i}>{s}</li>)}
+        </ul>
+      </section>
+
+      <section id="contact" className="section">
+        <h1>Contact Me</h1>
+        <p>Email: your.email@example.com</p>
+        <p>Phone: 012-345-6789</p>
+      </section>
+
+      <Footer />
+
+      {modalContent && (
+        <div className={`modal show`} onClick={() => setModalContent(null)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <h2>{modalContent.title}</h2>
+            <p>{modalContent.description}</p>
+            <a href={modalContent.link} target="_blank" rel="noopener noreferrer">View Project</a>
+            <button onClick={() => setModalContent(null)}>Close</button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
