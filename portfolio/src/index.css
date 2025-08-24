@@ -53,12 +53,20 @@ body {
 /* ======================= Sections ======================= */
 .section {
   min-height: 100vh;
-  padding: 100px 20px 60px; /* top padding for fixed navbar */
+  padding: 100px 20px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section h1 {
@@ -157,6 +165,11 @@ body {
   transition: all 0.3s ease;
 }
 
+.modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 .modal-content {
   background: #fff;
   padding: 30px 25px;
@@ -166,11 +179,6 @@ body {
   text-align: center;
   transform: translateY(-50px);
   transition: all 0.3s ease;
-}
-
-.modal.show {
-  opacity: 1;
-  visibility: visible;
 }
 
 .modal.show .modal-content {
