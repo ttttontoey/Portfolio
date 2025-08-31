@@ -1,13 +1,129 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* 1. ตัวแปรธีม */
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #111;
+  --nav-bg: rgba(255,255,255,0.8);
+  --nav-text: #111;
+  --accent-color: #7f5af0;
+  --card-bg: rgba(255,255,255,0.5);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+[data-theme="dark"] {
+  --bg-color: #0E1116;
+  --text-color: #ECEDEF;
+  --nav-bg: rgba(255,255,255,0.1);
+  --nav-text: #ECEDEF;
+  --accent-color: #9CC9FF;
+  --card-bg: rgba(255,255,255,0.08);
+}
+
+/* 2. Base & Body */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  transition: background 0.3s, color 0.3s;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+/* 3. Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;  /* แยกซ้าย-ขวา */
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  padding: 1rem 2rem;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+
+.nav-left {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+
+
+nav a {
+  color: var(--nav-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.3s;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* 4. Section */
+section {
+  min-height: 100vh;
+  padding-top: 120px; /* ป้องกัน Navbar บัง */
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+/* 5. การ์ด / ปุ่ม */
+.project-card {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.btn-pill {
+  padding: 0.6rem 1.2rem;
+  border-radius: 32px;
+  background: var(--accent-color);
+  color: var(--bg-color);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-pill:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.theme-icon-btn {
+  background: transparent;       /* ไม่มีสีพื้นหลัง */
+  border: none;                  /* ลบขอบ */
+  box-shadow: none;              /* ลบเงา */
+  cursor: pointer;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.theme-icon-btn:hover {
+  transform: scale(1.1);        /* ยกเล็กน้อยเวลาชี้เมาส์ */
 }
