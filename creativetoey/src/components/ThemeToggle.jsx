@@ -17,7 +17,7 @@ export default function ThemeToggle() {
       aria-label="Toggle Theme"  
       className="theme-icon-btn"
     >
-      {theme === "light" ? "⚝" : "🔆"}
+      {theme === "light" ? "🌙" : "☀️"}
     </button>
   );
 }
