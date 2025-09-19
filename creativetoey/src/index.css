@@ -1,9 +1,11 @@
-/* 1. ตัวแปรธีม */
+/* ===============================
+   1. ตัวแปรธีม
+=============================== */
 :root {
   --bg-color: #f5f5f5;
-  --text-color: #111;
+  --text-color: #4B0082; /* สีม่วงเข้มสำหรับธีมสว่าง */
   --nav-bg: rgba(255,255,255,0.8);
-  --nav-text: #111;
+  --nav-text: #4B0082;   /* สีลิงก์ใน navbar */
   --accent-color: #7f5af0;
   --card-bg: rgba(255,255,255,0.5);
 }
@@ -17,69 +19,109 @@
   --card-bg: rgba(255,255,255,0.08);
 }
 
-/* 2. Base & Body */
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: 'Inter', sans-serif;
-  transition: background 0.3s, color 0.3s;
+/* ===============================
+   2. Base & Reset
+=============================== */
+html, body {
   margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
   scroll-behavior: smooth;
 }
 
-/* 3. Navbar */
+/* ===============================
+   3. Navbar
+=============================== */
 nav {
-  display: flex;
-  justify-content: space-between;  /* แยกซ้าย-ขวา */
-  align-items: center;
-  width: 90%;
-  max-width: 1200px;
-  padding: 1rem 2rem;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(5px);
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(128, 90, 213, 0.15); /* ม่วงใส */
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    0 8px 24px rgba(128, 90, 213, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+
   z-index: 1000;
 }
-
 
 .nav-left {
   display: flex;
   gap: 2rem;
+  flex: 1;
 }
 
-.nav-right {
+.nav-center {
   display: flex;
+  justify-content: space-between;  /* ให้ส่วนซ้ายและขวาแยกกันชัดเจน */
   align-items: center;
+  padding: 0 20px;
+  gap: 2rem;
+  flex: 0.8;
 }
-
-
-
 nav a {
-  color: var(--nav-text);
   text-decoration: none;
+  color: var(--nav-text); /* ใช้ตัวแปรธีม */
   font-weight: 500;
-  transition: color 0.3s, transform 0.3s;
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {          /* active link */
+  color: var(--accent-color); 
+  text-shadow: 0 0 10px var(--accent-color);
+}
+
+/* ===============================
+   4. Theme Toggle Button
+=============================== */
+.theme-icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--nav-text);   /* เปลี่ยนสีตามธีม */
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s, color 0.3s;
+}
+
+.theme-icon-btn:hover {
+  transform: scale(1.2);
   color: var(--accent-color);
-  transform: translateY(-2px);
 }
 
-/* 4. Section */
+/* ===============================
+   5. Section
+=============================== */
 section {
   min-height: 100vh;
-  padding-top: 120px; /* ป้องกัน Navbar บัง */
+  padding-top: 120px; /* กัน Navbar บัง */
   padding-left: 50px;
   padding-right: 50px;
 }
 
-/* 5. การ์ด / ปุ่ม */
+/* ===============================
+   6. Card / Button
+=============================== */
 .project-card {
   background: var(--card-bg);
   padding: 1rem;
@@ -109,25 +151,9 @@ section {
   filter: brightness(1.1);
 }
 
-.theme-icon-btn {
-  background: transparent;       /* ไม่มีสีพื้นหลัง */
-  border: none;                  /* ลบขอบ */
-  box-shadow: none;              /* ลบเงา */
-  cursor: pointer;
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.2s;
-}
-
-.theme-icon-btn:hover {
-  transform: scale(1.1);        /* ยกเล็กน้อยเวลาชี้เมาส์ */
-}
-
+/* ===============================
+   7. Tailwind
+=============================== */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

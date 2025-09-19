@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -12,12 +12,8 @@ export default function ThemeToggle() {
   };
 
   return (
-    <button 
-      onClick={toggleTheme} 
-      aria-label="Toggle Theme"  
-      className="theme-icon-btn"
-    >
-      {theme === "light" ? "⚝" : "🔆"}
+    <button onClick={toggleTheme} className="theme-btn">
+      {theme === "light" ? "🌙" : "☀️"}
     </button>
   );
 }
