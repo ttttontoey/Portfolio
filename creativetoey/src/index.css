@@ -157,3 +157,28 @@ section {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@keyframes ripple {
+    from {
+      transform: scale(0);
+      opacity: 0.6;
+    }
+    to {
+      transform: scale(10);
+      opacity: 0;
+    }
+  }
+
+  .animate-ripple {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(128,0,128,0.8) 0%, rgba(128,0,128,0) 70%);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
